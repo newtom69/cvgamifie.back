@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace PremiereAPI.Controllers
 {
+    /// <summary>
+    /// Controlleur POC. Ne doit pas être pusher en prod
+    /// </summary>
     public class UsersController : Controller
     {
         private readonly Context _context;
@@ -14,11 +17,20 @@ namespace PremiereAPI.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// liste des users de l'application retournée en Json
+        /// </summary>
+        /// <returns></returns>
         public async Task<JsonResult> Index()
         {
             return new JsonResult(await _context.Users.ToListAsync());
         }
 
+        /// <summary>
+        /// détails d'un user retournée en Json
+        /// </summary>
+        /// <param name="id">id du user</param>
+        /// <returns></returns>
         [HttpGet]
         public async Task<JsonResult> Details(int? id)
         {
@@ -29,6 +41,11 @@ namespace PremiereAPI.Controllers
             return new JsonResult(user);
         }
 
+        /// <summary>
+        /// supprimer un user de l'application
+        /// </summary>
+        /// <param name="id">id du user à supprimer</param>
+        /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> Delete(int id)

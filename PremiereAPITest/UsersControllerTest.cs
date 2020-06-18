@@ -9,26 +9,35 @@ using Xunit;
 
 namespace PremiereAPITest
 {
+    /// <summary>
+    /// TUs POC du controller POC UsersController
+    /// </summary>
     public class UsersControllerTest
     {
-        public DbContextOptions<Context> DbContextOptions { get; } = new DbContextOptionsBuilder<Context>().Options;
+        private DbContextOptions<Context> DbContextOptions { get; } = new DbContextOptionsBuilder<Context>().Options;
         private DbContextMock<Context> DbContextMock { get; set; }
 
-        readonly User PaulBismuth = new User { Id = 1, UserName = "Paul Bismuth" };
-        readonly User AlainDeloin = new User { Id = 2, UserName = "Alain Deloin" };
-        public List<User> TwoUsers { get; set; }
+        private readonly User PaulBismuth = new User { Id = 1, UserName = "Paul Bismuth" };
+        private readonly User AlainDeloin = new User { Id = 2, UserName = "Alain Deloin" };
+        private List<User> TwoUsers { get; set; }
 
+        /// <summary>
+        /// Constructeur avec mock du DbContext
+        /// préparation de 2 user en mémoire
+        /// </summary>
         public UsersControllerTest()
         {
             DbContextMock = new DbContextMock<Context>(DbContextOptions);
             TwoUsers = new List<User>() { PaulBismuth, AlainDeloin };
         }
 
+        // Query dbContextMock.Object.Users to see if certain users were added or removed
+        // or use Mock Verify functionality to verify if certain methods were called: usersDbSetMock.Verify(x => x.Add(...), Times.Once)
 
         [Fact]
-        public void DetailsWithoutUsers()
+        public void DetailsWith0UsersShoultReturnNull()
         {
-            var emmptyUsersDbSetMock = DbContextMock.CreateDbSetMock(x => x.Users, null);
+            DbContextMock.CreateDbSetMock(x => x.Users, null);
             UsersController userController = new UsersController(DbContextMock.Object);
             for (int i = 1; i < 10; i++)
             {
@@ -38,9 +47,9 @@ namespace PremiereAPITest
         }
 
         [Fact]
-        public void DetailsWithTwoUsers()
+        public void DetailsWith2UsersShouldReturnTwoUsers()
         {
-            var usersDbSetMock = DbContextMock.CreateDbSetMock(x => x.Users, TwoUsers);
+            DbContextMock.CreateDbSetMock(x => x.Users, TwoUsers);
             UsersController userController = new UsersController(DbContextMock.Object);
 
             List<User> result = new List<User>();
@@ -56,11 +65,10 @@ namespace PremiereAPITest
             }
         }
 
-
         [Fact]
-        public void IndexWithoutUsers()
+        public void IndexWith0UsersShouldReturnEmptyList()
         {
-            var emmptyUsersDbSetMock = DbContextMock.CreateDbSetMock(x => x.Users, null);
+            DbContextMock.CreateDbSetMock(x => x.Users, null);
             UsersController userController = new UsersController(DbContextMock.Object);
 
             JsonResult result = userController.Index().Result;
@@ -68,9 +76,9 @@ namespace PremiereAPITest
         }
 
         [Fact]
-        public void IndexWithTwoUsers()
+        public void IndexWith2UsersShouldReturnListWith2Users()
         {
-            var usersDbSetMock = DbContextMock.CreateDbSetMock(x => x.Users, TwoUsers);
+            DbContextMock.CreateDbSetMock(x => x.Users, TwoUsers);
             UsersController userController = new UsersController(DbContextMock.Object);
 
             List<User> index = (List<User>)userController.Index().Result.Value;
@@ -80,9 +88,9 @@ namespace PremiereAPITest
         }
 
         [Fact]
-        public void DeleteWithTwoUsers()
+        public void DeleteWith2Users()
         {
-            var usersDbSetMock = DbContextMock.CreateDbSetMock(x => x.Users, TwoUsers);
+            DbContextMock.CreateDbSetMock(x => x.Users, TwoUsers);
             UsersController userController = new UsersController(DbContextMock.Object);
             List<User> index = (List<User>)userController.Delete(1).Result.Value;
             Assert.Single(index);
@@ -93,5 +101,3 @@ namespace PremiereAPITest
     }
 }
 
-// Query dbContextMock.Object.Users to see if certain users were added or removed
-// or use Mock Verify functionality to verify if certain methods were called: usersDbSetMock.Verify(x => x.Add(...), Times.Once);

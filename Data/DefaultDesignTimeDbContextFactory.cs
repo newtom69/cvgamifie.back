@@ -6,6 +6,10 @@ using System.IO;
 
 namespace Data
 {
+    /// <summary>
+    /// Classe servant uniquement à la création / migration des tables de la base de données avec le CLI dotnet ef [...]
+    /// VS indique 0 référence mais elle sert bien !
+    /// </summary>
     public class DefaultDesignTimeDbContextFactory : IDesignTimeDbContextFactory<Context>
     {
         public Context CreateDbContext(string[] args)
