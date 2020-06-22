@@ -27,22 +27,22 @@ namespace TrainerAPITest
             Tcs = new List<TrainingCourse> { _tc1, _tc2, _tc3 };
         }
 
-        private static Context Context(string DbName)
+        private static DefaultContext Context(string DbName)
         {
-            var contextOptions = new DbContextOptionsBuilder<Context>()
+            var contextOptions = new DbContextOptionsBuilder<DefaultContext>()
                 .UseInMemoryDatabase(databaseName: DbName)
                 .Options;
-            Context context = new Context(contextOptions);
-            return context;
+            DefaultContext defaultContext = new DefaultContext(contextOptions);
+            return defaultContext;
         }
 
         [Fact]
         public void DetailsWith0()
         {
             string DbName = MethodBase.GetCurrentMethod().Name;
-            Context context = Context(DbName);
+            DefaultContext defaultContext = Context(DbName);
 
-            TrainingCourseController trainingCourseController = new TrainingCourseController(context);
+            TrainingCourseController trainingCourseController = new TrainingCourseController(defaultContext);
             for (int i = 1; i < 1000; i++)
             {
                 JsonResult result = trainingCourseController.Details(i).Result;
@@ -55,10 +55,10 @@ namespace TrainerAPITest
         public void DetailsWith3()
         {
             string DbName = MethodBase.GetCurrentMethod().Name;
-            Context context = Context(DbName);
-            context.TrainingCourses.AddRange(Tcs);
-            context.SaveChanges();
-            TrainingCourseController trainingCourseController = new TrainingCourseController(context);
+            DefaultContext defaultContext = Context(DbName);
+            defaultContext.TrainingCourses.AddRange(Tcs);
+            defaultContext.SaveChanges();
+            TrainingCourseController trainingCourseController = new TrainingCourseController(defaultContext);
 
             List<TrainingCourse> result = new List<TrainingCourse>();
             for (int i = 0; i < 10; i++)
@@ -78,9 +78,9 @@ namespace TrainerAPITest
         public void IndexWith0()
         {
             string DbName = MethodBase.GetCurrentMethod().Name;
-            Context context = Context(DbName);
+            DefaultContext defaultContext = Context(DbName);
 
-            TrainingCourseController trainingCourseController = new TrainingCourseController(context);
+            TrainingCourseController trainingCourseController = new TrainingCourseController(defaultContext);
 
             JsonResult result = trainingCourseController.Index().Result;
             Assert.Equal(new List<TrainingCourse>(), result.Value);
@@ -90,10 +90,10 @@ namespace TrainerAPITest
         public void IndexWith3()
         {
             string DbName = MethodBase.GetCurrentMethod().Name;
-            Context context = Context(DbName);
-            context.TrainingCourses.AddRange(Tcs);
-            context.SaveChanges();
-            TrainingCourseController trainingCourseController = new TrainingCourseController(context);
+            DefaultContext defaultContext = Context(DbName);
+            defaultContext.TrainingCourses.AddRange(Tcs);
+            defaultContext.SaveChanges();
+            TrainingCourseController trainingCourseController = new TrainingCourseController(defaultContext);
 
             List<TrainingCourse> trainingCoursesReturnedByIndex = (List<TrainingCourse>)trainingCourseController.Index().Result.Value;
             Assert.Equal(3, trainingCoursesReturnedByIndex.Count);
@@ -107,10 +107,10 @@ namespace TrainerAPITest
         public void DeleteWith3()
         {
             string DbName = MethodBase.GetCurrentMethod().Name;
-            Context context = Context(DbName);
-            context.TrainingCourses.AddRange(Tcs);
-            context.SaveChanges();
-            TrainingCourseController trainingCourseController = new TrainingCourseController(context);
+            DefaultContext defaultContext = Context(DbName);
+            defaultContext.TrainingCourses.AddRange(Tcs);
+            defaultContext.SaveChanges();
+            TrainingCourseController trainingCourseController = new TrainingCourseController(defaultContext);
 
             List<TrainingCourse> trainingCoursesReturnedByIndex = (List<TrainingCourse>)trainingCourseController.Index().Result.Value;
             List<int> trainingCoursesId = new List<int>();

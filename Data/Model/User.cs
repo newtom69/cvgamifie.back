@@ -9,7 +9,5 @@ namespace Data.Model
     /// </summary>
     public class User : IdentityUser<int>
     {
-        // todo : ajouter les attrributs spécifiques aux utilisateurs non déjà implémentés dans IdentityUser
-        override public string UserName { get; set; }
     }
 }

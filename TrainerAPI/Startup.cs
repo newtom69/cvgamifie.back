@@ -27,7 +27,7 @@ namespace TrainerAPI
 
             services.AddControllers();
 
-            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDbContext")), ServiceLifetime.Scoped);
+            services.AddDbContext<DefaultContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDbContext")), ServiceLifetime.Scoped);
             services.AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequireDigit = false;
@@ -38,7 +38,7 @@ namespace TrainerAPI
                 options.Password.RequiredUniqueChars = 2;
             })
             .AddRoleManager<RoleManager<IdentityRole<int>>>()
-            .AddEntityFrameworkStores<Context>()
+            .AddEntityFrameworkStores<DefaultContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
 

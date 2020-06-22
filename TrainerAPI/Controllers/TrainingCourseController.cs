@@ -10,17 +10,17 @@ namespace TrainerAPI.Controllers
     /// </summary>
     public class TrainingCourseController : Controller
     {
-        private readonly Context _context;
+        private readonly DefaultContext _defaultContext;
 
-        public TrainingCourseController(Context context)
+        public TrainingCourseController(DefaultContext defaultContext)
         {
-            _context = context;
+            _defaultContext = defaultContext;
         }
 
 
         public async Task<JsonResult> Index()
         {
-            return new JsonResult(await _context.TrainingCourses.ToListAsync());
+            return new JsonResult(await _defaultContext.TrainingCourses.ToListAsync());
         }
 
 
@@ -30,7 +30,7 @@ namespace TrainerAPI.Controllers
             if (id == null)
                 return new JsonResult(null);
 
-            var tc = await _context.TrainingCourses.FirstOrDefaultAsync(m => m.Id == id);
+            var tc = await _defaultContext.TrainingCourses.FirstOrDefaultAsync(m => m.Id == id);
             return new JsonResult(tc);
         }
 
@@ -39,9 +39,9 @@ namespace TrainerAPI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> Delete(int id)
         {
-            var tc = await _context.TrainingCourses.FindAsync(id);
-            _context.TrainingCourses.Remove(tc);
-            await _context.SaveChangesAsync();
+            var tc = await _defaultContext.TrainingCourses.FindAsync(id);
+            _defaultContext.TrainingCourses.Remove(tc);
+            await _defaultContext.SaveChangesAsync();
             return await Index();
         }
     }

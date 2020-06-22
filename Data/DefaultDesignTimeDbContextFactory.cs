@@ -10,9 +10,9 @@ namespace Data
     /// Classe servant uniquement à la création / migration des tables de la base de données avec le CLI dotnet ef [...]
     /// VS indique 0 référence mais elle sert bien !
     /// </summary>
-    public class DefaultDesignTimeDbContextFactory : IDesignTimeDbContextFactory<Context>
+    public class DefaultDesignTimeDbContextFactory : IDesignTimeDbContextFactory<DefaultContext>
     {
-        public Context CreateDbContext(string[] args)
+        public DefaultContext CreateDbContext(string[] args)
         {
             string path = Path.Combine(Directory.GetCurrentDirectory(), "..", "TrainerAPI"); //TODO adapter
             string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -23,9 +23,9 @@ namespace Data
                                .SetBasePath(path)
                                .AddJsonFile($"appsettings.{env}.json");
             IConfigurationRoot config = builder.Build();
-            DbContextOptionsBuilder<Context> optionBuilder = new DbContextOptionsBuilder<Context>();
+            DbContextOptionsBuilder<DefaultContext> optionBuilder = new DbContextOptionsBuilder<DefaultContext>();
             optionBuilder.UseSqlServer(config.GetConnectionString("AdminDbContext"));
-            return new Context(optionBuilder.Options);
+            return new DefaultContext(optionBuilder.Options);
         }
     }
 }

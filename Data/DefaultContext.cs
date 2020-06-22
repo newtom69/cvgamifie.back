@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data
 {
-    public class Context : IdentityDbContext<User, IdentityRole<int>, int>
+    /// <summary>
+    /// les différentes tables de la base de données de l'appli
+    /// </summary>
+    public class DefaultContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public DbSet<TrainingCourse> TrainingCourses { get; set; }
         public DbSet<TrainingCourseTrainer> TrainingCourseTrainers { get; set; }
@@ -15,7 +18,7 @@ namespace Data
 
 
 
-        public Context(DbContextOptions<Context> options) : base(options)
+        public DefaultContext(DbContextOptions<DefaultContext> options) : base(options)
         {
         }
 
