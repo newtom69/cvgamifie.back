@@ -27,7 +27,7 @@ namespace TrainerAPI
 
             services.AddControllers();
 
-            services.AddDbContext<Context>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDbContext")), ServiceLifetime.Scoped);
+            services.AddDbContext<Context>(options => options.UseMySQL(Configuration.GetConnectionString("UserDbContext")), ServiceLifetime.Scoped);
             services.AddIdentity<User, IdentityRole<int>>(options =>
             {
                 options.Password.RequireDigit = false;

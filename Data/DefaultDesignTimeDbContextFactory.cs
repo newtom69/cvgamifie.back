@@ -14,7 +14,7 @@ namespace Data
     {
         public Context CreateDbContext(string[] args)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "..", "PremiereAPI"); //TODO adapter
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "..", "TrainerAPI"); //TODO adapter
             string env = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
             if (env == null)
                 env = "Development";
@@ -24,7 +24,7 @@ namespace Data
                                .AddJsonFile($"appsettings.{env}.json");
             IConfigurationRoot config = builder.Build();
             DbContextOptionsBuilder<Context> optionBuilder = new DbContextOptionsBuilder<Context>();
-            optionBuilder.UseSqlServer(config.GetConnectionString("AdminDbContext"));
+            optionBuilder.UseMySQL(config.GetConnectionString("AdminMySql"));
             return new Context(optionBuilder.Options);
         }
     }
