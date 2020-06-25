@@ -9,5 +9,9 @@ namespace Data.Model
     /// </summary>
     public class User : IdentityUser<int>
     {
+        /// <summary>
+        /// points d'expérience général en tant que stagiaire (le cas échéant)
+        /// </summary>
+        public int StudentXP { get; set; }
     }
 }

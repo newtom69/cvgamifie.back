@@ -22,11 +22,17 @@ namespace Data.Model
         public int TrainingCourseId { get; set; }
 
         /// <summary>
+        /// id de la quête principale (le cas échéant)
+        /// </summary>
+        public int? MainQuestId { get; set; }
+
+        /// <summary>
         /// numéro de la quête dans la formation
         /// </summary>
         public int Number { get; set; }
 
 
         public TrainingCourse TrainingCourse { get; set; }
+        public Quest MainQuest { get; set; }
     }
 }
