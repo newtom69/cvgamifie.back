@@ -11,6 +11,7 @@ namespace Data
     public class DefaultContext : IdentityDbContext<User, IdentityRole<int>, int>
     {
         public DbSet<TrainingCourse> TrainingCourses { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<TrainingCourseTrainer> TrainingCourseTrainers { get; set; }
         public DbSet<TrainingCourseStudent> TrainingCourseStudents { get; set; }
         public DbSet<Quest> Quests { get; set; }
@@ -26,5 +27,15 @@ namespace Data
         {
             // Method intentionally left empty.
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+            int a = 55;
+
+        }
+
+
+
     }
 }

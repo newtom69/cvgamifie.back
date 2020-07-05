@@ -1,4 +1,7 @@
-﻿namespace Data.Model
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Data.Model
 {
     /// <summary>
     /// les formations
@@ -22,6 +25,7 @@
 
 
         public virtual User Owner { get; set; }
+
 
     }
 }
