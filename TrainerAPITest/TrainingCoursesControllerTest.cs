@@ -9,9 +9,6 @@ using Xunit;
 
 namespace TrainerAPITest
 {
-    /// <summary>
-    /// TUs POC du controller POC UsersController
-    /// </summary>
     public class TrainingCoursesControllerTest
     {
         private readonly TrainingCourse _tc1 = new TrainingCourse { Name = "Angular" };
