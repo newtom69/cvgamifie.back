@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System.Collections.Generic;
+using Data;
 using Microsoft.AspNetCore.Mvc;
 using Data.Model;
 using Microsoft.AspNetCore.Http;
@@ -41,6 +42,17 @@ namespace TrainerAPI.Controllers
                 return NotFound();
 
             return tc;
+        }
+
+        [HttpGet("")]
+        public ActionResult<IEnumerable<TrainingCourse>> Read()
+        {
+            var tc = _trainingCourseBusiness.List();
+
+            if (tc == null)
+                return NotFound();
+
+            return new ObjectResult(tc);
         }
 
         [HttpPut("")]

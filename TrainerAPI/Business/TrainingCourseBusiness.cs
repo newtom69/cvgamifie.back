@@ -2,6 +2,8 @@
 using System.Linq;
 using Data;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace TrainerAPI.Business
 {
@@ -35,6 +37,12 @@ namespace TrainerAPI.Business
             return trainingCourse;
         }
 
+        public IEnumerable<TrainingCourse> List()
+        {
+            var trainingCourses = _defaultContext.TrainingCourses.AsNoTracking();
+            return trainingCourses;
+        }
+
         public bool Update(TrainingCourse trainingCourseToUpdate)
         {
             var trainingCourse = _defaultContext.TrainingCourses.AsNoTracking().FirstOrDefault(x => x.Id == trainingCourseToUpdate.Id);
@@ -45,7 +53,7 @@ namespace TrainerAPI.Business
             var saveResult = _defaultContext.SaveChanges();
             return saveResult == 1;
         }
-        
+
         public bool Delete(int id)
         {
             var trainingCourse = _defaultContext.TrainingCourses.AsNoTracking().FirstOrDefault(x => x.Id == id);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Data;
 using Data.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -58,13 +59,22 @@ namespace TrainerAPITest
         }
 
         [Fact]
-        public void Read_Found_Ids_Should_Return_Good_TrainingCourses()
+        public void Read_All_TrainingCourses_Should_Return_All_TrainingCourses()
+        {
+            var trainingCourseController = InitializeTrainingCourseController(true);
+
+            var actual = JsonConvert.SerializeObject(((ObjectResult)trainingCourseController.Read().Result).Value);
+            var expected = JsonConvert.SerializeObject(new List<TrainingCourse> {_tc1, _tc2, _tc3});
+            
+            Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void Read_Found_TrainingCourse_Should_Return_Good_TrainingCourse()
         {
             var trainingCourseController = InitializeTrainingCourseController(true);
 
             Assert.Equal(JsonConvert.SerializeObject(_tc1), JsonConvert.SerializeObject(trainingCourseController.Read(1).Value));
-            Assert.Equal(JsonConvert.SerializeObject(_tc2), JsonConvert.SerializeObject(trainingCourseController.Read(2).Value));
-            Assert.Equal(JsonConvert.SerializeObject(_tc3), JsonConvert.SerializeObject(trainingCourseController.Read(3).Value));
         }
 
         [Fact]

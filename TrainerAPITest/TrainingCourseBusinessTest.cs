@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Data;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace TrainerAPITest
         private readonly TrainingCourse _tc1 = new TrainingCourse { Name = "Training course 1" };
         private readonly TrainingCourse _tc2 = new TrainingCourse { Name = "Training course 2" };
         private readonly TrainingCourse _tc3 = new TrainingCourse { Name = "Training course 3" };
-        
+
         [Fact]
         public void Create_TrainingCourse_Should_Return_TrainingCourse_With_Id_Grow_Up()
         {
@@ -42,6 +43,14 @@ namespace TrainerAPITest
             TrainingCourseBusiness trainingCourseBusiness = new TrainingCourseBusiness(defaultContext);
 
             Assert.Null(trainingCourseBusiness.Create(_tc1));
+        }
+
+        [Fact]
+        public void Read_All_TrainingCourse_Should_Return_TrainingCourses()
+        {
+            var trainingCourseBusiness = InitializeTrainingCourseBusiness(true);
+
+            Assert.Equal(JsonConvert.SerializeObject(new List<TrainingCourse> { _tc1, _tc2, _tc3 }), JsonConvert.SerializeObject(trainingCourseBusiness.List()));
         }
 
         [Fact]
