@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace TrainerAPI.Business
 {
+    /// <summary>
+    /// Classe de gestion des utilisateurs (User)
+    /// </summary>
     public class UserBusiness
     {
         private readonly DefaultContext _defaultContext;

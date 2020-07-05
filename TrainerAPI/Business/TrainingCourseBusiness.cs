@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace TrainerAPI.Business
 {
+    /// <summary>
+    /// Classe métier de la gestion des formations (TrainingCourse)
+    /// </summary>
     public class TrainingCourseBusiness
     {
         private readonly DefaultContext _defaultContext;
