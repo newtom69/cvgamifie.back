@@ -23,7 +23,7 @@
         /// <summary>
         /// point d'expérience du stagiaire sur cette formation
         /// </summary>
-        public int StudentXP { get; set; }
+        public int StudentXp { get; set; }
 
 
         public virtual TrainingCourse TrainingCourse { get; set; }
