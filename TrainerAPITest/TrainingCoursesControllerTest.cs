@@ -78,7 +78,7 @@ namespace TrainerAPITest
         }
 
         [Fact]
-        public void Update_Found_TrainingCourses_Should_Return_Status200()
+        public void Update_Found_TrainingCourses_Should_Return_Status204()
         {
             var trainingCourseController = InitializeTrainingCourseController(true);
             TrainingCourse tc1 = new TrainingCourse { Id = 1, Name = "OtherName1" };
@@ -104,7 +104,7 @@ namespace TrainerAPITest
         }
 
         [Fact]
-        public void Delete_Found_TrainingCourse_Should_Return_Status200()
+        public void Delete_Found_TrainingCourse_Should_Return_Status204()
         {
             var trainingCourseController = InitializeTrainingCourseController(true);
 
