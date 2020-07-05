@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Data;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using TrainerAPI.Business;
 using Xunit;
 
@@ -14,9 +14,9 @@ namespace TrainerAPITest
     /// </summary>
     public class TrainingCourseStudentStudentBusinessTest
     {
-        private readonly TrainingCourseStudent _tc1s1 = new TrainingCourseStudent { TrainingCourseId = 1 , StudentId = 1};
-        private readonly TrainingCourseStudent _tc1s2 = new TrainingCourseStudent { TrainingCourseId = 1 , StudentId = 2 };
-        private readonly TrainingCourseStudent _tc2s3 = new TrainingCourseStudent { TrainingCourseId = 2 , StudentId = 3 };
+        private readonly TrainingCourseStudent _tc1s1 = new TrainingCourseStudent { TrainingCourseId = 1, StudentId = 1 };
+        private readonly TrainingCourseStudent _tc1s2 = new TrainingCourseStudent { TrainingCourseId = 1, StudentId = 2 };
+        private readonly TrainingCourseStudent _tc2s3 = new TrainingCourseStudent { TrainingCourseId = 2, StudentId = 3 };
 
         [Fact]
         public void Create_TrainingCourseStudent_Should_Return_TrainingCourseStudent_With_Id_Grow_Up()
@@ -89,7 +89,7 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseStudentBusiness(true);
 
-            var tcs1 = new TrainingCourseStudent { Id = 1, TrainingCourseId = 1, StudentXp = 10};
+            var tcs1 = new TrainingCourseStudent { Id = 1, TrainingCourseId = 1, StudentXp = 10 };
             var tcs2 = new TrainingCourseStudent { Id = 2, TrainingCourseId = 1, StudentXp = 28 };
             var tcs3 = new TrainingCourseStudent { Id = 3, TrainingCourseId = 1, StudentXp = 47 };
 

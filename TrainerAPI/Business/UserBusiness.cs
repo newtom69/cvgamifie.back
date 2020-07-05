@@ -1,8 +1,8 @@
-﻿using Data.Model;
+﻿using Data;
+using Data.Model;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
-using Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace TrainerAPI.Business
 {
@@ -40,7 +40,7 @@ namespace TrainerAPI.Business
             var saveResult = _defaultContext.SaveChanges();
             return saveResult == 1;
         }
-        
+
         public bool Delete(int id)
         {
             var user = _defaultContext.Users.AsNoTracking().FirstOrDefault(x => x.Id == id);

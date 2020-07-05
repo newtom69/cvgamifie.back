@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
 using Data;
 using Data.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using TrainerAPI.Controllers;
 using Xunit;
 

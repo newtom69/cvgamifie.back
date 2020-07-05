@@ -1,7 +1,7 @@
-using System;
 using Data;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 using TrainerAPI.Business;
 using Xunit;
 

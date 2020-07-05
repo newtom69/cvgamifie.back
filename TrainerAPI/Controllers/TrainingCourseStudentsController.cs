@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using Data;
 using Data.Model;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using TrainerAPI.Business;
 
 namespace TrainerAPI.Controllers
@@ -73,4 +73,4 @@ namespace TrainerAPI.Controllers
             return NoContent();
         }
     }
- }
+}

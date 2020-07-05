@@ -1,9 +1,9 @@
-using System;
-using System.Collections.Generic;
 using Data;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using TrainerAPI.Business;
 using Xunit;
 

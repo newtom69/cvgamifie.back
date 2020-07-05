@@ -10,12 +10,12 @@ namespace Data.Model
         /// id de la quête (incrémental)
         /// </summary>
         public int Id { get; set; }
-        
+
         /// <summary>
         /// Nom de la quête
         /// </summary>
         public string Name { get; set; }
-        
+
         /// <summary>
         /// id de la formation de cette quête
         /// </summary>

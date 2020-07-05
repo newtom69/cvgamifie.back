@@ -14,7 +14,7 @@
         ///  id de la formation
         /// </summary>
         public int TrainingCourseId { get; set; }
-        
+
         /// <summary>
         /// id de l'utilisateur formateur
         /// </summary>

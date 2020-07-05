@@ -1,10 +1,10 @@
-using System;
-using System.Collections.Generic;
 using Data;
 using Data.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using TrainerAPI.Controllers;
 using Xunit;
 
@@ -64,8 +64,8 @@ namespace TrainerAPITest
             var trainingCourseController = InitializeTrainingCourseController(true);
 
             var actual = JsonConvert.SerializeObject(((ObjectResult)trainingCourseController.Read().Result).Value);
-            var expected = JsonConvert.SerializeObject(new List<TrainingCourse> {_tc1, _tc2, _tc3});
-            
+            var expected = JsonConvert.SerializeObject(new List<TrainingCourse> { _tc1, _tc2, _tc3 });
+
             Assert.Equal(expected, actual);
         }
 

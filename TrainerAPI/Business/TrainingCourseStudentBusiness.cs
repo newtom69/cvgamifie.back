@@ -1,9 +1,8 @@
-﻿using Data.Model;
-using System.Linq;
-using Data;
+﻿using Data;
+using Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TrainerAPI.Business
 {
