@@ -9,7 +9,7 @@ namespace TrainerAPI.Business
     /// <summary>
     /// Classe métier de la gestion des formations (TrainingCourse)
     /// </summary>
-    public class TrainingCourseBusiness
+    public class TrainingCourseBusiness : ITrainingCourseBusiness
     {
         private readonly DefaultContext _defaultContext;
 

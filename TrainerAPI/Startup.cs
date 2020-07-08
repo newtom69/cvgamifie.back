@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TrainerAPI.Business;
 
 namespace TrainerAPI
 {
@@ -21,6 +22,10 @@ namespace TrainerAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITrainingCourseBusiness, TrainingCourseBusiness>();
+            services.AddScoped<ITrainingCourseStudentBusiness, TrainingCourseStudentBusiness>();
+            services.AddScoped<IUserBusiness, UserBusiness>();
+
             #region apiAddAuthentication
 
             #endregion

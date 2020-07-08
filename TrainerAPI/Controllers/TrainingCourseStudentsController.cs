@@ -14,11 +14,11 @@ namespace TrainerAPI.Controllers
     [ApiController]
     public class TrainingCourseStudentsController : Controller
     {
-        private readonly TrainingCourseStudentBusiness _trainingCourseStudentBusiness;
+        private readonly ITrainingCourseStudentBusiness _trainingCourseStudentBusiness;
 
-        public TrainingCourseStudentsController(DefaultContext defaultContext)
+        public TrainingCourseStudentsController(ITrainingCourseStudentBusiness trainingCourseStudentBusiness)
         {
-            _trainingCourseStudentBusiness = new TrainingCourseStudentBusiness(defaultContext);
+            _trainingCourseStudentBusiness = trainingCourseStudentBusiness;
         }
 
         [HttpPost("")]

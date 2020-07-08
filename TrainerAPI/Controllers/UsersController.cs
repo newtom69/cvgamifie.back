@@ -14,11 +14,11 @@ namespace TrainerAPI.Controllers
     [ApiController]
     public class UsersController : Controller
     {
-        private readonly UserBusiness _userBusiness;
+        private readonly IUserBusiness _userBusiness;
 
-        public UsersController(DefaultContext defaultContext)
+        public UsersController(IUserBusiness userBusiness)
         {
-            _userBusiness = new UserBusiness(defaultContext);
+            _userBusiness = userBusiness;
         }
 
         [HttpPost("")]

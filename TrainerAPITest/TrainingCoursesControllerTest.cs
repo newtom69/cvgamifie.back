@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using TrainerAPI.Business;
 using TrainerAPI.Controllers;
 using Xunit;
 
@@ -40,10 +41,12 @@ namespace TrainerAPITest
         {
             var defaultContext = FakeContext();
 
+            var business = new TrainingCourseBusiness(defaultContext);
+
             if (addData)
                 AddTrainingCourses(defaultContext);
 
-            var trainingCoursesController = new TrainingCoursesController(defaultContext);
+            var trainingCoursesController = new TrainingCoursesController(business);
             return trainingCoursesController;
         }
 

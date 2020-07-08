@@ -9,7 +9,7 @@ namespace TrainerAPI.Business
     /// <summary>
     /// Classe métier de la gestion des formations des apprenants (TrainingCourseStudent)
     /// </summary>
-    public class TrainingCourseStudentBusiness
+    public class TrainingCourseStudentBusiness : ITrainingCourseStudentBusiness
     {
         private readonly DefaultContext _defaultContext;
 
@@ -18,9 +18,9 @@ namespace TrainerAPI.Business
             _defaultContext = defaultContext;
         }
 
-        public TrainingCourseStudent Create(TrainingCourseStudent trainingCourse)
+        public TrainingCourseStudent Create(TrainingCourseStudent trainingCourseStudent)
         {
-            var addResult = _defaultContext.TrainingCourseStudents.Add(trainingCourse);
+            var addResult = _defaultContext.TrainingCourseStudents.Add(trainingCourseStudent);
             int saveResult;
             try
             {
