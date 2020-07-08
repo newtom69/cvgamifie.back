@@ -28,12 +28,13 @@ namespace Data
             // Method intentionally left empty.
         }
 
+        // ReSharper disable once RedundantOverriddenMember
+#pragma warning disable S1185 // Overriding members should do more than simply call the same member in the base class
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            int a = 55;
-
         }
+#pragma warning restore S1185 // Overriding members should do more than simply call the same member in the base class
 
 
 
