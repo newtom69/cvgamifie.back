@@ -26,6 +26,9 @@ namespace TrainerAPI
             services.AddScoped<ITrainingCourseStudentBusiness, TrainingCourseStudentBusiness>();
             services.AddScoped<IUserBusiness, UserBusiness>();
 
+            services.AddScoped<ITrainingCourseModelBusiness, TrainingCourseModelBusiness>();
+
+
             #region apiAddAuthentication
 
             #endregion

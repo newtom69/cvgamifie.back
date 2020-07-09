@@ -1,5 +1,4 @@
-﻿using Data;
-using Data.Model;
+﻿using Data.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

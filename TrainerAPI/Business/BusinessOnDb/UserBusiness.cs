@@ -1,6 +1,7 @@
 ﻿using Data;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -59,6 +60,36 @@ namespace TrainerAPI.Business
         {
             var users = _defaultContext.Users.AsNoTracking();
             return users;
+        }
+
+        internal List<User> TrainersList(TrainingCourse trainingCourse)
+        {
+            List<User> users = (from tct in _defaultContext.TrainingCourseTrainers
+                                join u in _defaultContext.Users on tct.TrainerId equals u.Id
+                                where tct.TrainingCourseId == trainingCourse.Id
+                                select u).ToList();
+
+            return users;
+
+        }
+
+        internal List<User> StudentsList(TrainingCourse trainingCourse)
+        {
+            List<User> users = (from tct in _defaultContext.TrainingCourseStudents
+                                join u in _defaultContext.Users on tct.StudentId equals u.Id
+                                where tct.TrainingCourseId == trainingCourse.Id
+                                select u).ToList();
+
+            return users;
+        }
+
+        internal User Owner(TrainingCourse trainingCourse)
+        {
+            User user = (from u in _defaultContext.Users
+                         where u.Id == trainingCourse.OwnerId
+                         select u).FirstOrDefault();
+
+            return user;
         }
     }
 }

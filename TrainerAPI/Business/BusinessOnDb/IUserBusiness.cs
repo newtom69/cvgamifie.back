@@ -1,8 +1,6 @@
 ﻿using Data.Model;
-using System;
+using Data.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace TrainerAPI.Business
 {

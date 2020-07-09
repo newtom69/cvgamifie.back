@@ -41,7 +41,7 @@ namespace TrainerAPITest
         {
             var defaultContext = FakeContext();
 
-            var business = new TrainingCourseBusiness(defaultContext);
+            var business = new TrainingCourseModelBusiness(defaultContext);
 
             if (addData)
                 AddTrainingCourses(defaultContext);
