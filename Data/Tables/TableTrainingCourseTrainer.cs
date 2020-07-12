@@ -1,9 +1,9 @@
 ﻿namespace Data.Model
 {
     /// <summary>
-    /// le/les formateurs d'une formation (jointure TrainingCourse / User)
+    /// le/les formateurs d'une formation (jointure TableTrainingCourse / TableUser)
     /// </summary>
-    public class TrainingCourseTrainer
+    public class TableTrainingCourseTrainer
     {
         /// <summary>
         /// id (incrémental)
@@ -21,7 +21,7 @@
         public int TrainerId { get; set; }
 
 
-        public virtual TrainingCourse TrainingCourse { get; set; }
-        public virtual User Trainer { get; set; }
+        public virtual TableTrainingCourse TrainingCourse { get; set; }
+        public virtual TableUser Trainer { get; set; }
     }
 }

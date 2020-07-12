@@ -1,5 +1,5 @@
-﻿using Data.Model;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using TrainerAPI.Business.Model;
 
 namespace TrainerAPI.Business
 {

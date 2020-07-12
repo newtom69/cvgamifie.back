@@ -22,11 +22,13 @@ namespace TrainerAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ITableTrainingCourseBusiness, TableTrainingCourseBusiness>();
             services.AddScoped<ITrainingCourseBusiness, TrainingCourseBusiness>();
-            services.AddScoped<ITrainingCourseStudentBusiness, TrainingCourseStudentBusiness>();
-            services.AddScoped<IUserBusiness, UserBusiness>();
 
-            services.AddScoped<ITrainingCourseModelBusiness, TrainingCourseModelBusiness>();
+            services.AddScoped<ITableTrainingCourseStudentBusiness, TableTrainingCourseStudentBusiness>();
+            services.AddScoped<ITableUserBusiness, TableUserBusiness>();
+
+
 
 
             #region apiAddAuthentication
@@ -36,7 +38,7 @@ namespace TrainerAPI
             services.AddControllers();
 
             services.AddDbContext<DefaultContext>(options => options.UseSqlServer(Configuration.GetConnectionString("UserDbContext")), ServiceLifetime.Scoped);
-            services.AddIdentity<User, IdentityRole<int>>(options =>
+            services.AddIdentity<TableUser, IdentityRole<int>>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;

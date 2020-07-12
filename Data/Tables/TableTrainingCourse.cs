@@ -4,7 +4,7 @@ namespace Data.Model
     /// <summary>
     /// les formations
     /// </summary>
-    public class TrainingCourse
+    public class TableTrainingCourse
     {
         /// <summary>
         /// id de la formation (incrémental)
@@ -22,7 +22,7 @@ namespace Data.Model
         public int OwnerId { get; set; }
 
 
-        public virtual User Owner { get; set; }
+        public virtual TableUser Owner { get; set; }
 
 
     }

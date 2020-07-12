@@ -4,7 +4,7 @@ namespace Data.Model
     /// <summary>
     /// les quêtes des formations
     /// </summary>
-    public class Quest
+    public class TableQuest
     {
         /// <summary>
         /// id de la quête (incrémental)
@@ -32,7 +32,7 @@ namespace Data.Model
         public int Number { get; set; }
 
 
-        public TrainingCourse TrainingCourse { get; set; }
-        public Quest MainQuest { get; set; }
+        public TableTrainingCourse TrainingCourse { get; set; }
+        public TableQuest MainQuest { get; set; }
     }
 }

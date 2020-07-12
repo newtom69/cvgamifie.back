@@ -10,13 +10,13 @@ using Xunit;
 namespace TrainerAPITest
 {
     /// <summary>
-    /// TUs TrainingCourseStudentBusiness
+    /// TUs TableTrainingCourseStudentBusiness
     /// </summary>
     public class TrainingCourseStudentStudentBusinessTest
     {
-        private readonly TrainingCourseStudent _tc1s1 = new TrainingCourseStudent { TrainingCourseId = 1, StudentId = 1 };
-        private readonly TrainingCourseStudent _tc1s2 = new TrainingCourseStudent { TrainingCourseId = 1, StudentId = 2 };
-        private readonly TrainingCourseStudent _tc2s3 = new TrainingCourseStudent { TrainingCourseId = 2, StudentId = 3 };
+        private readonly TableTrainingCourseStudent _tc1s1 = new TableTrainingCourseStudent { TrainingCourseId = 1, StudentId = 1 };
+        private readonly TableTrainingCourseStudent _tc1s2 = new TableTrainingCourseStudent { TrainingCourseId = 1, StudentId = 2 };
+        private readonly TableTrainingCourseStudent _tc2s3 = new TableTrainingCourseStudent { TrainingCourseId = 2, StudentId = 3 };
 
         [Fact]
         public void Create_TrainingCourseStudent_Should_Return_TrainingCourseStudent_With_Id_Grow_Up()
@@ -40,9 +40,9 @@ namespace TrainerAPITest
         public void Create_TrainingCourseStudent_Should_Return_Null_When_Create_Failed()
         {
             DefaultContext defaultContext = FalseFakeContext();
-            TrainingCourseStudentBusiness trainingCourseBusiness = new TrainingCourseStudentBusiness(defaultContext);
+            TableTrainingCourseStudentBusiness tableTrainingCourseBusiness = new TableTrainingCourseStudentBusiness(defaultContext);
 
-            Assert.Null(trainingCourseBusiness.Create(_tc1s1));
+            Assert.Null(tableTrainingCourseBusiness.Create(_tc1s1));
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseStudentBusiness(true);
 
-            Assert.Equal(JsonConvert.SerializeObject(new List<TrainingCourseStudent> { _tc1s1, _tc1s2, _tc2s3 }), JsonConvert.SerializeObject(trainingCourseBusiness.List()));
+            Assert.Equal(JsonConvert.SerializeObject(new List<TableTrainingCourseStudent> { _tc1s1, _tc1s2, _tc2s3 }), JsonConvert.SerializeObject(trainingCourseBusiness.List()));
         }
 
         [Fact]
@@ -89,9 +89,9 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseStudentBusiness(true);
 
-            var tcs1 = new TrainingCourseStudent { Id = 1, TrainingCourseId = 1, StudentXp = 10 };
-            var tcs2 = new TrainingCourseStudent { Id = 2, TrainingCourseId = 1, StudentXp = 28 };
-            var tcs3 = new TrainingCourseStudent { Id = 3, TrainingCourseId = 1, StudentXp = 47 };
+            var tcs1 = new TableTrainingCourseStudent { Id = 1, TrainingCourseId = 1, StudentXp = 10 };
+            var tcs2 = new TableTrainingCourseStudent { Id = 2, TrainingCourseId = 1, StudentXp = 28 };
+            var tcs3 = new TableTrainingCourseStudent { Id = 3, TrainingCourseId = 1, StudentXp = 47 };
 
             Assert.True(trainingCourseBusiness.Update(tcs1));
             Assert.True(trainingCourseBusiness.Update(tcs2));
@@ -103,9 +103,9 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseStudentBusiness(true);
 
-            var tcs1 = new TrainingCourseStudent { Id = 178, TrainingCourseId = 1, StudentXp = 10 };
-            var tcs2 = new TrainingCourseStudent { Id = 4785, TrainingCourseId = 187, StudentXp = 28 };
-            var tcs3 = new TrainingCourseStudent { Id = 32568, TrainingCourseId = 1, StudentXp = 47 };
+            var tcs1 = new TableTrainingCourseStudent { Id = 178, TrainingCourseId = 1, StudentXp = 10 };
+            var tcs2 = new TableTrainingCourseStudent { Id = 4785, TrainingCourseId = 187, StudentXp = 28 };
+            var tcs3 = new TableTrainingCourseStudent { Id = 32568, TrainingCourseId = 1, StudentXp = 47 };
 
             Assert.False(trainingCourseBusiness.Update(tcs1));
             Assert.False(trainingCourseBusiness.Update(tcs2));
@@ -145,14 +145,14 @@ namespace TrainerAPITest
             return new DefaultContext(contextOptions);
         }
 
-        private TrainingCourseStudentBusiness InitializeTrainingCourseStudentBusiness(bool addData)
+        private TableTrainingCourseStudentBusiness InitializeTrainingCourseStudentBusiness(bool addData)
         {
             var defaultContext = FakeContext();
 
             if (addData)
                 AddTrainingCourseStudents(defaultContext);
 
-            var trainingCourseStudentBusiness = new TrainingCourseStudentBusiness(defaultContext);
+            var trainingCourseStudentBusiness = new TableTrainingCourseStudentBusiness(defaultContext);
             return trainingCourseStudentBusiness;
         }
 

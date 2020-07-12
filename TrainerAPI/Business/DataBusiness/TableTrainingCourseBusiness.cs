@@ -7,20 +7,20 @@ using System.Linq;
 namespace TrainerAPI.Business
 {
     /// <summary>
-    /// Classe métier de la gestion des formations (TrainingCourse)
+    /// Classe métier de la gestion des formations (TableTrainingCourse)
     /// </summary>
-    public class TrainingCourseBusiness : ITrainingCourseBusiness
+    public class TableTrainingCourseBusiness : ITableTrainingCourseBusiness
     {
         private readonly DefaultContext _defaultContext;
 
-        public TrainingCourseBusiness(DefaultContext defaultContext)
+        public TableTrainingCourseBusiness(DefaultContext defaultContext)
         {
             _defaultContext = defaultContext;
         }
 
-        public TrainingCourse Create(TrainingCourse trainingCourse)
+        public TableTrainingCourse Create(TableTrainingCourse tableTrainingCourse)
         {
-            var addResult = _defaultContext.TrainingCourses.Add(trainingCourse);
+            var addResult = _defaultContext.TrainingCourses.Add(tableTrainingCourse);
             int saveResult;
             try
             {
@@ -33,25 +33,25 @@ namespace TrainerAPI.Business
             return saveResult == 1 ? addResult.Entity : null;
         }
 
-        public TrainingCourse Read(int id)
+        public TableTrainingCourse Read(int id)
         {
             var trainingCourse = _defaultContext.TrainingCourses.AsNoTracking().FirstOrDefault(x => x.Id == id);
             return trainingCourse;
         }
 
-        public IEnumerable<TrainingCourse> List()
+        public IEnumerable<TableTrainingCourse> List()
         {
             var trainingCourses = _defaultContext.TrainingCourses.AsNoTracking();
             return trainingCourses;
         }
 
-        public bool Update(TrainingCourse trainingCourseToUpdate)
+        public bool Update(TableTrainingCourse tableTrainingCourseToUpdate)
         {
-            var trainingCourse = _defaultContext.TrainingCourses.AsNoTracking().FirstOrDefault(x => x.Id == trainingCourseToUpdate.Id);
+            var trainingCourse = _defaultContext.TrainingCourses.AsNoTracking().FirstOrDefault(x => x.Id == tableTrainingCourseToUpdate.Id);
             if (trainingCourse == null)
                 return false;
 
-            _defaultContext.TrainingCourses.Update(trainingCourseToUpdate);
+            _defaultContext.TrainingCourses.Update(tableTrainingCourseToUpdate);
             var saveResult = _defaultContext.SaveChanges();
             return saveResult == 1;
         }

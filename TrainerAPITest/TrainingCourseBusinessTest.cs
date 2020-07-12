@@ -10,13 +10,13 @@ using Xunit;
 namespace TrainerAPITest
 {
     /// <summary>
-    /// TUs TrainingCourseBusiness
+    /// TUs TableTrainingCourseBusiness
     /// </summary>
     public class TrainingCourseBusinessTest
     {
-        private readonly TrainingCourse _tc1 = new TrainingCourse { Name = "Training course 1" };
-        private readonly TrainingCourse _tc2 = new TrainingCourse { Name = "Training course 2" };
-        private readonly TrainingCourse _tc3 = new TrainingCourse { Name = "Training course 3" };
+        private readonly TableTrainingCourse _tc1 = new TableTrainingCourse { Name = "Training course 1" };
+        private readonly TableTrainingCourse _tc2 = new TableTrainingCourse { Name = "Training course 2" };
+        private readonly TableTrainingCourse _tc3 = new TableTrainingCourse { Name = "Training course 3" };
 
         [Fact]
         public void Create_TrainingCourse_Should_Return_TrainingCourse_With_Id_Grow_Up()
@@ -40,9 +40,9 @@ namespace TrainerAPITest
         public void Create_TrainingCourse_Should_Return_Null_When_Create_Failed()
         {
             DefaultContext defaultContext = FalseFakeContext();
-            TrainingCourseBusiness trainingCourseBusiness = new TrainingCourseBusiness(defaultContext);
+            TableTrainingCourseBusiness tableTrainingCourseBusiness = new TableTrainingCourseBusiness(defaultContext);
 
-            Assert.Null(trainingCourseBusiness.Create(_tc1));
+            Assert.Null(tableTrainingCourseBusiness.Create(_tc1));
         }
 
         [Fact]
@@ -50,7 +50,7 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseBusiness(true);
 
-            Assert.Equal(JsonConvert.SerializeObject(new List<TrainingCourse> { _tc1, _tc2, _tc3 }), JsonConvert.SerializeObject(trainingCourseBusiness.List()));
+            Assert.Equal(JsonConvert.SerializeObject(new List<TableTrainingCourse> { _tc1, _tc2, _tc3 }), JsonConvert.SerializeObject(trainingCourseBusiness.List()));
         }
 
         [Fact]
@@ -89,9 +89,9 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseBusiness(true);
 
-            var tc1 = new TrainingCourse { Id = 1, Name = "Name changed" };
-            var tc2 = new TrainingCourse { Id = 2, Name = "Name also changed" };
-            var tc3 = new TrainingCourse { Id = 3, Name = "Name also changed" };
+            var tc1 = new TableTrainingCourse { Id = 1, Name = "Name changed" };
+            var tc2 = new TableTrainingCourse { Id = 2, Name = "Name also changed" };
+            var tc3 = new TableTrainingCourse { Id = 3, Name = "Name also changed" };
 
             Assert.True(trainingCourseBusiness.Update(tc1));
             Assert.True(trainingCourseBusiness.Update(tc2));
@@ -103,9 +103,9 @@ namespace TrainerAPITest
         {
             var trainingCourseBusiness = InitializeTrainingCourseBusiness(true);
 
-            var tc1 = new TrainingCourse { Id = 17, Name = "Name changed" };
-            var tc2 = new TrainingCourse { Id = 472, Name = "Name also changed" };
-            var tc3 = new TrainingCourse { Id = 3047, Name = "Name also changed" };
+            var tc1 = new TableTrainingCourse { Id = 17, Name = "Name changed" };
+            var tc2 = new TableTrainingCourse { Id = 472, Name = "Name also changed" };
+            var tc3 = new TableTrainingCourse { Id = 3047, Name = "Name also changed" };
 
             Assert.False(trainingCourseBusiness.Update(tc1));
             Assert.False(trainingCourseBusiness.Update(tc2));
@@ -145,14 +145,14 @@ namespace TrainerAPITest
             return new DefaultContext(contextOptions);
         }
 
-        private TrainingCourseBusiness InitializeTrainingCourseBusiness(bool addData)
+        private TableTrainingCourseBusiness InitializeTrainingCourseBusiness(bool addData)
         {
             var defaultContext = FakeContext();
 
             if (addData)
                 AddTrainingCourses(defaultContext);
 
-            var trainingCourseBusiness = new TrainingCourseBusiness(defaultContext);
+            var trainingCourseBusiness = new TableTrainingCourseBusiness(defaultContext);
             return trainingCourseBusiness;
         }
 

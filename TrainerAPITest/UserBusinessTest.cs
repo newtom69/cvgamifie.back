@@ -9,9 +9,9 @@ namespace TrainerAPITest
 {
     public class UserBusinessTest
     {
-        private readonly User _user1 = new User { UserName = "User 1" };
-        private readonly User _user2 = new User { UserName = "User 2" };
-        private readonly User _user3 = new User { UserName = "User 3" };
+        private readonly TableUser _user1 = new TableUser { UserName = "TableUser 1" };
+        private readonly TableUser _user2 = new TableUser { UserName = "TableUser 2" };
+        private readonly TableUser _user3 = new TableUser { UserName = "TableUser 3" };
 
 
         private static DefaultContext Context(string dbName)
@@ -36,7 +36,7 @@ namespace TrainerAPITest
         public void Create_User_ShouldReturn_User_With_Id_Grow_Up()
         {
             DefaultContext defaultContext = Context(Guid.NewGuid().ToString());
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             Assert.Equal(1, trainingCourseBusiness.Create(_user1).Id);
             Assert.Equal(2, trainingCourseBusiness.Create(_user2).Id);
@@ -47,7 +47,7 @@ namespace TrainerAPITest
         public void Create_User_Should_Return_Null_When_Create_Failed()
         {
             DefaultContext defaultContext = FalseContext();
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             var tcReturn = trainingCourseBusiness.Create(_user1);
 
@@ -58,7 +58,7 @@ namespace TrainerAPITest
         public void Read_Users_With_Goods_Id_ShouldReturn_Users()
         {
             DefaultContext defaultContext = Context(Guid.NewGuid().ToString());
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             defaultContext.Users.Add(_user1);
             defaultContext.Users.Add(_user2);
@@ -78,7 +78,7 @@ namespace TrainerAPITest
             defaultContext.Users.Add(_user2);
             defaultContext.Users.Add(_user3);
             defaultContext.SaveChanges();
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             Assert.Null(trainingCourseBusiness.Read(4));
             Assert.Null(trainingCourseBusiness.Read(18));
@@ -89,7 +89,7 @@ namespace TrainerAPITest
         public void Read_Users_When_db_Empty_ShouldReturn_Null()
         {
             DefaultContext defaultContext = Context(Guid.NewGuid().ToString());
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             Assert.Null(trainingCourseBusiness.Read(1));
             Assert.Null(trainingCourseBusiness.Read(2));
@@ -108,10 +108,10 @@ namespace TrainerAPITest
             defaultContext.Entry(_user1).State = EntityState.Detached;
             defaultContext.Entry(_user2).State = EntityState.Detached;
             defaultContext.Entry(_user3).State = EntityState.Detached;
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
-            User user1 = new User { Id = 1, UserName = "Name changed" };
-            User user2 = new User { Id = 2, UserName = "Name also changed" };
-            User user3 = new User { Id = 3, UserName = "Name also also changed" };
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
+            TableUser user1 = new TableUser { Id = 1, UserName = "Name changed" };
+            TableUser user2 = new TableUser { Id = 2, UserName = "Name also changed" };
+            TableUser user3 = new TableUser { Id = 3, UserName = "Name also also changed" };
 
             Assert.True(trainingCourseBusiness.Update(user1));
             Assert.True(trainingCourseBusiness.Update(user2));
@@ -126,10 +126,10 @@ namespace TrainerAPITest
             defaultContext.Users.Add(_user2);
             defaultContext.Users.Add(_user3);
             defaultContext.SaveChanges();
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
-            User tc1 = new User { Id = 85, UserName = "Try change name" };
-            User tc2 = new User { Id = 147, UserName = "Try change name again" };
-            User tc3 = new User { Id = 1487, UserName = "Try change name again again" };
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
+            TableUser tc1 = new TableUser { Id = 85, UserName = "Try change name" };
+            TableUser tc2 = new TableUser { Id = 147, UserName = "Try change name again" };
+            TableUser tc3 = new TableUser { Id = 1487, UserName = "Try change name again again" };
 
             Assert.False(trainingCourseBusiness.Update(tc1));
             Assert.False(trainingCourseBusiness.Update(tc2));
@@ -147,7 +147,7 @@ namespace TrainerAPITest
             defaultContext.Entry(_user1).State = EntityState.Detached;
             defaultContext.Entry(_user2).State = EntityState.Detached;
             defaultContext.Entry(_user3).State = EntityState.Detached;
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             Assert.True(trainingCourseBusiness.Delete(1));
             Assert.True(trainingCourseBusiness.Delete(2));
@@ -162,7 +162,7 @@ namespace TrainerAPITest
             defaultContext.Users.Add(_user2);
             defaultContext.Users.Add(_user3);
             defaultContext.SaveChanges();
-            UserBusiness trainingCourseBusiness = new UserBusiness(defaultContext);
+            TableUserBusiness trainingCourseBusiness = new TableUserBusiness(defaultContext);
 
             Assert.False(trainingCourseBusiness.Delete(12));
             Assert.False(trainingCourseBusiness.Delete(17));

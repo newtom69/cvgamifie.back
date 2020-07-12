@@ -8,14 +8,14 @@ namespace Data
     /// <summary>
     /// les différentes tables de la base de données de l'appli
     /// </summary>
-    public class DefaultContext : IdentityDbContext<User, IdentityRole<int>, int>
+    public class DefaultContext : IdentityDbContext<TableUser, IdentityRole<int>, int>
     {
-        public DbSet<TrainingCourse> TrainingCourses { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<TrainingCourseTrainer> TrainingCourseTrainers { get; set; }
-        public DbSet<TrainingCourseStudent> TrainingCourseStudents { get; set; }
-        public DbSet<Quest> Quests { get; set; }
-        public DbSet<Stage> Stages { get; set; }
+        public DbSet<TableTrainingCourse> TrainingCourses { get; set; }
+        public DbSet<TableUser> Users { get; set; }
+        public DbSet<TableTrainingCourseTrainer> TrainingCourseTrainers { get; set; }
+        public DbSet<TableTrainingCourseStudent> TrainingCourseStudents { get; set; }
+        public DbSet<TableQuest> Quests { get; set; }
+        public DbSet<TableStage> Stages { get; set; }
 
 
 

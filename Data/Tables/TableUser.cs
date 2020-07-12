@@ -7,7 +7,7 @@ namespace Data.Model
     /// <summary>
     /// les utilisateurs de l'appli : formateurs, stagiaires etc
     /// </summary>
-    public class User : IdentityUser<int>
+    public class TableUser : IdentityUser<int>
     {
         /// <summary>
         /// points d'expérience général en tant que stagiaire (le cas échéant)

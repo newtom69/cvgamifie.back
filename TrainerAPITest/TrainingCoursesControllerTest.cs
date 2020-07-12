@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using TrainerAPI.Business;
+using TrainerAPI.Business.Model;
 using TrainerAPI.Controllers;
 using Xunit;
 
@@ -16,6 +17,10 @@ namespace TrainerAPITest
         private readonly TrainingCourse _tc1 = new TrainingCourse { Name = "Angular" };
         private readonly TrainingCourse _tc2 = new TrainingCourse { Name = "C#" };
         private readonly TrainingCourse _tc3 = new TrainingCourse { Name = ".net core" };
+
+        private readonly TableTrainingCourse _ttc1 = new TableTrainingCourse { Name = "Angular" };
+        private readonly TableTrainingCourse _ttc2 = new TableTrainingCourse { Name = "C#" };
+        private readonly TableTrainingCourse _ttc3 = new TableTrainingCourse { Name = ".net core" };
 
         private static DefaultContext FakeContext()
         {
@@ -28,20 +33,20 @@ namespace TrainerAPITest
 
         private void AddTrainingCourses(DefaultContext defaultContext)
         {
-            defaultContext.TrainingCourses.Add(_tc1);
-            defaultContext.TrainingCourses.Add(_tc2);
-            defaultContext.TrainingCourses.Add(_tc3);
+            defaultContext.TrainingCourses.Add(_ttc1);
+            defaultContext.TrainingCourses.Add(_ttc2);
+            defaultContext.TrainingCourses.Add(_ttc3);
             defaultContext.SaveChanges();
-            defaultContext.Entry(_tc1).State = EntityState.Detached;
-            defaultContext.Entry(_tc2).State = EntityState.Detached;
-            defaultContext.Entry(_tc3).State = EntityState.Detached;
+            defaultContext.Entry(_ttc1).State = EntityState.Detached;
+            defaultContext.Entry(_ttc2).State = EntityState.Detached;
+            defaultContext.Entry(_ttc3).State = EntityState.Detached;
         }
 
         private TrainingCoursesController InitializeTrainingCourseController(bool addData)
         {
             var defaultContext = FakeContext();
 
-            var business = new TrainingCourseModelBusiness(defaultContext);
+            var business = new TrainingCourseBusiness(defaultContext);
 
             if (addData)
                 AddTrainingCourses(defaultContext);
@@ -58,7 +63,7 @@ namespace TrainerAPITest
             var result = (CreatedAtActionResult)trainingCourseController.Create(_tc1);
 
             Assert.Equal(201, result.StatusCode);
-            Assert.NotNull((TrainingCourse)result.Value);
+            Assert.NotNull((TableTrainingCourse)result.Value);
         }
 
         [Fact]

@@ -3,7 +3,7 @@
     /// <summary>
     /// les étapes des quêtes
     /// </summary>
-    public class Stage
+    public class TableStage
     {
         /// <summary>
         /// id de l'étape (incrémental)
@@ -21,6 +21,6 @@
         public int QuestId { get; set; }
 
 
-        public virtual Quest Quest { get; set; }
+        public virtual TableQuest Quest { get; set; }
     }
 }

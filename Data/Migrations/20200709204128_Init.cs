@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Data.Migrations
 {
@@ -211,7 +211,7 @@ namespace Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TrainingCourseId = table.Column<int>(nullable: false),
                     StudentId = table.Column<int>(nullable: false),
-                    StudentXP = table.Column<int>(nullable: false)
+                    StudentXp = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -227,7 +227,7 @@ namespace Data.Migrations
                         column: x => x.TrainingCourseId,
                         principalTable: "TrainingCourses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -253,7 +253,7 @@ namespace Data.Migrations
                         column: x => x.TrainingCourseId,
                         principalTable: "TrainingCourses",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

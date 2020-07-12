@@ -1,44 +1,40 @@
 ﻿using Data;
 using Data.Model;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace TrainerAPI.Business
 {
-    /// <summary>
-    /// Classe de gestion des utilisateurs (User)
-    /// </summary>
-    public class QuestBusiness : IQuestBusiness
+    public class TableQuestBusiness : ITableQuestBusiness
     {
         private readonly DefaultContext _defaultContext;
 
-        public QuestBusiness(DefaultContext defaultContext)
+        public TableQuestBusiness(DefaultContext defaultContext)
         {
             _defaultContext = defaultContext;
         }
 
-        public Quest Create(Quest quest)
+        public TableQuest Create(TableQuest tableQuest)
         {
-            var addResult = _defaultContext.Quests.Add(quest);
+            var addResult = _defaultContext.Quests.Add(tableQuest);
             var saveResult = _defaultContext.SaveChanges();
             return saveResult == 1 ? addResult.Entity : null;
         }
 
-        public Quest Read(int id)
+        public TableQuest Read(int id)
         {
-            var user = _defaultContext.Quests.AsNoTracking().FirstOrDefault(x => x.Id == id);
-            return user;
+            var quest = _defaultContext.Quests.AsNoTracking().FirstOrDefault(x => x.Id == id);
+            return quest;
         }
 
-        public bool Update(Quest questToUpdate)
+        public bool Update(TableQuest tableQuestToUpdate)
         {
-            var user = _defaultContext.Quests.AsNoTracking().FirstOrDefault(x => x.Id == questToUpdate.Id);
-            if (user == null)
+            var quest = _defaultContext.Quests.AsNoTracking().FirstOrDefault(x => x.Id == tableQuestToUpdate.Id);
+            if (quest == null)
                 return false;
 
-            _defaultContext.Quests.Update(questToUpdate);
+            _defaultContext.Quests.Update(tableQuestToUpdate);
             var saveResult = _defaultContext.SaveChanges();
             return saveResult == 1;
         }
@@ -54,17 +50,17 @@ namespace TrainerAPI.Business
             return saveResult == 1;
         }
 
-        public IEnumerable<Quest> List()
+        public IEnumerable<TableQuest> List()
         {
             var quests = _defaultContext.Quests.AsNoTracking();
             return quests;
         }
 
-        internal List<Quest> QuestsList(TrainingCourse trainingCourse)
+        public List<TableQuest> QuestsList(TableTrainingCourse tableTrainingCourse)
         {
-            List<Quest> quests = (from q in _defaultContext.Quests
-                                  where q.TrainingCourseId == trainingCourse.Id
-                                  select q).ToList();
+            List<TableQuest> quests = (from q in _defaultContext.Quests
+                                       where q.TrainingCourseId == tableTrainingCourse.Id
+                                       select q).ToList();
 
             return quests;
 

@@ -19,7 +19,7 @@ namespace Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Data.Model.Quest", b =>
+            modelBuilder.Entity("Data.Model.TableQuest", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace Data.Migrations
                     b.ToTable("Quests");
                 });
 
-            modelBuilder.Entity("Data.Model.Stage", b =>
+            modelBuilder.Entity("Data.Model.TableStage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -67,7 +67,7 @@ namespace Data.Migrations
                     b.ToTable("Stages");
                 });
 
-            modelBuilder.Entity("Data.Model.TrainingCourse", b =>
+            modelBuilder.Entity("Data.Model.TableTrainingCourse", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -87,7 +87,7 @@ namespace Data.Migrations
                     b.ToTable("TrainingCourses");
                 });
 
-            modelBuilder.Entity("Data.Model.TrainingCourseStudent", b =>
+            modelBuilder.Entity("Data.Model.TableTrainingCourseStudent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -97,7 +97,7 @@ namespace Data.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StudentXP")
+                    b.Property<int>("StudentXp")
                         .HasColumnType("int");
 
                     b.Property<int>("TrainingCourseId")
@@ -112,7 +112,7 @@ namespace Data.Migrations
                     b.ToTable("TrainingCourseStudents");
                 });
 
-            modelBuilder.Entity("Data.Model.TrainingCourseTrainer", b =>
+            modelBuilder.Entity("Data.Model.TableTrainingCourseTrainer", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +134,7 @@ namespace Data.Migrations
                     b.ToTable("TrainingCourseTrainers");
                 });
 
-            modelBuilder.Entity("Data.Model.User", b =>
+            modelBuilder.Entity("Data.Model.TableUser", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -334,61 +334,61 @@ namespace Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Data.Model.Quest", b =>
+            modelBuilder.Entity("Data.Model.TableQuest", b =>
                 {
-                    b.HasOne("Data.Model.Quest", "MainQuest")
+                    b.HasOne("Data.Model.TableQuest", "MainQuest")
                         .WithMany()
                         .HasForeignKey("MainQuestId");
 
-                    b.HasOne("Data.Model.TrainingCourse", "TrainingCourse")
+                    b.HasOne("Data.Model.TableTrainingCourse", "TrainingCourse")
                         .WithMany()
                         .HasForeignKey("TrainingCourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Model.Stage", b =>
+            modelBuilder.Entity("Data.Model.TableStage", b =>
                 {
-                    b.HasOne("Data.Model.Quest", "Quest")
+                    b.HasOne("Data.Model.TableQuest", "Quest")
                         .WithMany()
                         .HasForeignKey("QuestId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Model.TrainingCourse", b =>
+            modelBuilder.Entity("Data.Model.TableTrainingCourse", b =>
                 {
-                    b.HasOne("Data.Model.User", "Owner")
+                    b.HasOne("Data.Model.TableUser", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Model.TrainingCourseStudent", b =>
+            modelBuilder.Entity("Data.Model.TableTrainingCourseStudent", b =>
                 {
-                    b.HasOne("Data.Model.User", "Student")
+                    b.HasOne("Data.Model.TableUser", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Model.TrainingCourse", "TrainingCourse")
+                    b.HasOne("Data.Model.TableTrainingCourse", "TrainingCourse")
                         .WithMany()
                         .HasForeignKey("TrainingCourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Data.Model.TrainingCourseTrainer", b =>
+            modelBuilder.Entity("Data.Model.TableTrainingCourseTrainer", b =>
                 {
-                    b.HasOne("Data.Model.User", "Trainer")
+                    b.HasOne("Data.Model.TableUser", "Trainer")
                         .WithMany()
                         .HasForeignKey("TrainerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Model.TrainingCourse", "TrainingCourse")
+                    b.HasOne("Data.Model.TableTrainingCourse", "TrainingCourse")
                         .WithMany()
                         .HasForeignKey("TrainingCourseId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -406,7 +406,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("Data.Model.User", null)
+                    b.HasOne("Data.Model.TableUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -415,7 +415,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("Data.Model.User", null)
+                    b.HasOne("Data.Model.TableUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -430,7 +430,7 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Model.User", null)
+                    b.HasOne("Data.Model.TableUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -439,7 +439,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("Data.Model.User", null)
+                    b.HasOne("Data.Model.TableUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

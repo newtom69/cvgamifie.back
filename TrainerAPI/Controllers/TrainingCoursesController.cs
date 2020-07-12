@@ -1,8 +1,8 @@
-﻿using Data.Model;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using TrainerAPI.Business;
+using TrainerAPI.Business.Model;
 
 namespace TrainerAPI.Controllers
 {
@@ -24,12 +24,12 @@ namespace TrainerAPI.Controllers
         public ActionResult Create(TrainingCourse trainingCourse)
         {
             trainingCourse.Id = 0;
-            var trainingCourseResult = _trainingCourseBusiness.Create(trainingCourse);
+            var trainingCourseModelResult = _trainingCourseBusiness.Create(trainingCourse);
 
-            if (trainingCourseResult == null)
+            if (trainingCourseModelResult == null)
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
 
-            return CreatedAtAction(nameof(Read), new { id = trainingCourseResult.Id }, trainingCourseResult);
+            return CreatedAtAction(nameof(Read), new { id = trainingCourseModelResult.Id }, trainingCourseModelResult);
         }
 
         [HttpGet("{id}")]

@@ -6,21 +6,18 @@ using System.Linq;
 
 namespace TrainerAPI.Business
 {
-    /// <summary>
-    /// Classe métier de la gestion des formations des apprenants (TrainingCourseStudent)
-    /// </summary>
-    public class TrainingCourseStudentBusiness : ITrainingCourseStudentBusiness
+    public class TableTrainingCourseStudentBusiness : ITableTrainingCourseStudentBusiness
     {
         private readonly DefaultContext _defaultContext;
 
-        public TrainingCourseStudentBusiness(DefaultContext defaultContext)
+        public TableTrainingCourseStudentBusiness(DefaultContext defaultContext)
         {
             _defaultContext = defaultContext;
         }
 
-        public TrainingCourseStudent Create(TrainingCourseStudent trainingCourseStudent)
+        public TableTrainingCourseStudent Create(TableTrainingCourseStudent tableTrainingCourseStudent)
         {
-            var addResult = _defaultContext.TrainingCourseStudents.Add(trainingCourseStudent);
+            var addResult = _defaultContext.TrainingCourseStudents.Add(tableTrainingCourseStudent);
             int saveResult;
             try
             {
@@ -33,25 +30,25 @@ namespace TrainerAPI.Business
             return saveResult == 1 ? addResult.Entity : null;
         }
 
-        public TrainingCourseStudent Read(int id)
+        public TableTrainingCourseStudent Read(int id)
         {
             var trainingCourseStudent = _defaultContext.TrainingCourseStudents.AsNoTracking().FirstOrDefault(x => x.Id == id);
             return trainingCourseStudent;
         }
 
-        public IEnumerable<TrainingCourseStudent> List()
+        public IEnumerable<TableTrainingCourseStudent> List()
         {
             var trainingCourseStudents = _defaultContext.TrainingCourseStudents.AsNoTracking();
             return trainingCourseStudents;
         }
 
-        public bool Update(TrainingCourseStudent trainingCourseStudentToUpdate)
+        public bool Update(TableTrainingCourseStudent tableTrainingCourseStudentToUpdate)
         {
-            var trainingCourseStudent = _defaultContext.TrainingCourseStudents.AsNoTracking().FirstOrDefault(x => x.Id == trainingCourseStudentToUpdate.Id);
+            var trainingCourseStudent = _defaultContext.TrainingCourseStudents.AsNoTracking().FirstOrDefault(x => x.Id == tableTrainingCourseStudentToUpdate.Id);
             if (trainingCourseStudent == null)
                 return false;
 
-            _defaultContext.TrainingCourseStudents.Update(trainingCourseStudentToUpdate);
+            _defaultContext.TrainingCourseStudents.Update(tableTrainingCourseStudentToUpdate);
             var saveResult = _defaultContext.SaveChanges();
             return saveResult == 1;
         }
